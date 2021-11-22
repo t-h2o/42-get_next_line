@@ -1,0 +1,18 @@
+SRCS	=	get_next_line.c get_next_line_utils.c main.c
+
+OBJS	=	${SRCS:.c.o}
+
+NAME	=	program
+
+CC		=	gcc
+
+FLAGS	=	-Wall -Wextra -Werror
+
+
+obj:	${SRCS}
+	${CC} ${FLAGS} -c ${SRCS}
+
+${NAME}:	obj	
+	${CC} ${FLAGS} -o ${NAME} ${OBJS}
+
+all:		${NAME}
