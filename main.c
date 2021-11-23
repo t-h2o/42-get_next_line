@@ -23,7 +23,7 @@ void
 	int		fd;
 	char	*s;
 
-	fd = open("./README.md", O_RDONLY);
+	fd = open("./file", O_RDONLY);
 	
 	printf("\n[START TEST]\nFD = %.2d\t calls = %.2d\tBS = %d\n\n", fd, i, BUFFER_SIZE);
 	int p = i;
@@ -31,10 +31,10 @@ void
 	{
 		s = get_next_line(fd);
 		if (s)
-			printf("%p | %.3i | %s", s, p - i, s);
+			printf("\n%.3i | %s", p - i, s);
 		else
 			printf("%.3i | %s\n", p - i, "EOF");
-//		examine(s, "[RETUR]");
+		examine(s, "[RETUR]");
 		free(s);
 		s = 0;
 	}
@@ -45,6 +45,6 @@ void
 int
 	main()
 {
-	test(69);
+	test(3);
 	return (0);
 }
