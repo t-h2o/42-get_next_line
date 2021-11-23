@@ -4,6 +4,15 @@ that returns a lineending with a newline,
 read from a file descriptor.
 
 
+## Error
+
+you can't malloc a static variable
+
+you need
+
+```static char	buffer[BUFFER_SIZE];```
+
+
 ## Flowchart
 
 1. set the static variable and read the file
