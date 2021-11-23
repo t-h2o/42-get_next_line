@@ -23,15 +23,20 @@ void
 	int		fd;
 	char	*s;
 
-	fd = open("./file", O_RDONLY);
+	fd = open("./README.md", O_RDONLY);
 	
 	printf("\n[START TEST]\nFD = %.2d\t calls = %.2d\tBS = %d\n\n", fd, i, BUFFER_SIZE);
+	int p = i;
 	while (i--)
 	{
 		s = get_next_line(fd);
-		printf("[return]\n%s", s);
-		examine(s, "[RETUR]");
+		if (s)
+			printf("%p | %.3i | %s", s, p - i, s);
+		else
+			printf("%.3i | %s\n", p - i, "EOF");
+//		examine(s, "[RETUR]");
 		free(s);
+		s = 0;
 	}
 	printf("\n\n[end test]\n");
 	close(fd);
@@ -40,6 +45,6 @@ void
 int
 	main()
 {
-	test(12);
+	test(69);
 	return (0);
 }

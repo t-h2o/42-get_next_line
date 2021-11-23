@@ -20,3 +20,28 @@ b. static hasn't any break line
 3. analys again the buffer
 
 
+```
+    ┌────────────────┐
+Buff│hey\nHow are y\0│
+    └────────────────┘
+
+    ┌─┐
+Line│0│
+    └─┘
+
+    ┌─┐
+Rest│0│
+    └─┘
+
+    ┌────────────────┐
+Buff│hey\nHow are y\0│
+    └────────────────┘
+
+    ┌───────┐
+Line│hey\n\0│
+    └───────┘
+
+         ┌───────────┐
+Rest 0   │How are y\n│
+         └───────────┘
+```
