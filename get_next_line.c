@@ -26,40 +26,33 @@ char
 	static char	buff[BUFFER_SIZE];
 	char		*line;
 	ssize_t		skip;
-	ssize_t		n;
 
 	int			endline = 0;
 	
-	if (buff[0] == 0)
-	{
-		n = read(fd, buff, BUFFER_SIZE);
-		line = ft_strjoin("", buff);
-	}
-	else
-		line = ft_strjoin("", buff);
-
-	
 	while (!endline)
 	{
-		skip = 0;
 		if (buff[0] == 0)
 		{
-			n = read(fd, buff, BUFFER_SIZE);
-			line = ft_strjoin(line, buff);
+			printf("\nThe buffer is empty\n");
+			read(fd, buff, BUFFER_SIZE);
+			line = ft_strjoin("", buff);
 		}
-			
-		while (line[skip] && line[skip] != '\n')
-			skip++;
-		if (line[skip] == '\n')
+		else
+		{	
+			printf("\nthere is '%s' in the buffer\n", buff);
+			line = ft_strjoin("", buff);
+		}
+		skip = 0;
+		while (line[skip])
 		{
-			endline = 1;
-			line = ft_strsub(line, skip + 1);	
-			if (!line)
-				return (0);
+			if (line[skip] == '\n')
+			{
+				endline = 1;
+				break ;
+			}
+			skip++;
 		}
-		examine(buff, "buff");	
-		ft_decal(buff, skip + 1);
-	}
-	
+	}	
+
 	return (line);
 }
