@@ -34,7 +34,7 @@ void
 			printf("\n%.3i | %s", p - i, s);
 		else
 			printf("%.3i | %s\n", p - i, "EOF");
-		examine(s, "[RETUR]");
+//		examine(s, "[RETUR]");
 		free(s);
 		s = 0;
 	}
@@ -45,6 +45,7 @@ void
 int
 	main()
 {
-	test(3);
+//	test(3);
+	test(9);
 	return (0);
 }

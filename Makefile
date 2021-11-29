@@ -1,15 +1,16 @@
-SRCS	= main.c get_next_line.c get_next_line_utils.c
+SRCS	=	main.c get_next_line.c get_next_line_utils.c
 
+BS		=	12
 
-OBJS	= ${SRCS:.c=.o}
+OBJS	=	${SRCS:.c=.o}
 
-CC		= gcc
+CC		=	gcc
 
-FLAGS	= -Wall -Wextra -Werror
+FLAGS	=	-Wall -Wextra -Werror
 
-NAME	= program
+NAME	=	program
 
-RM		= rm -f
+RM		=	rm -f
 
 
 .c.o:
@@ -17,6 +18,12 @@ RM		= rm -f
 
 ${NAME}:	${OBJS}
 	${CC} ${FLAGS} -o ${NAME} ${OBJS}
+
+gcc:
+	gcc -Wall -Wextra -Werror -o ${NAME} -D BUFFER_SIZE=${BS} ${SRCS}
+	clear
+	./${NAME}
+#	valgrind --leak-check=full ./${NAME}
 
 all:		${NAME}
 
@@ -34,5 +41,8 @@ log:
 norm:
 	norminette ${SRCS}
 	norminette -RCheckDefine ${HEADER}
+
+leak:
+	valgrind --leak-check=full ./${NAME}
 
 .PHONY: all clean fclean re bonus so

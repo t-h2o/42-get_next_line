@@ -4,13 +4,13 @@ char
 	*ft_strsub(char *s, ssize_t n)
 {
 	char	*r;
-
 	r = (char *)malloc(n + 1);
 	if (!r)
 		return (0);
 	r[n] = 0;
 	while (n--)
 		r[n] = s[n];
+	free(s);
 	return (r);
 }
 
@@ -34,6 +34,7 @@ char
 	i = 0;
 	while (s2[i])
 		r[len++] = s2[i++];
+	free(s1);
 	return (r);	
 }
 
