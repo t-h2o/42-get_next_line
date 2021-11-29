@@ -1,6 +1,6 @@
 SRCS	=	main.c get_next_line.c get_next_line_utils.c
 
-BS		=	12
+BS		=	1
 
 OBJS	=	${SRCS:.c=.o}
 
@@ -22,7 +22,7 @@ ${NAME}:	${OBJS}
 gcc:
 	gcc -Wall -Wextra -Werror -o ${NAME} -D BUFFER_SIZE=${BS} ${SRCS}
 	clear
-	./${NAME}
+	./${NAME} | less
 #	valgrind --leak-check=full ./${NAME}
 
 all:		${NAME}

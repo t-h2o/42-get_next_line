@@ -1,5 +1,6 @@
 #include	"./get_next_line.h"
 #include	<string.h>
+#define		BUFF		examine(buff, "buff");
 
 void
 	ft_decal(char *s, ssize_t n)
@@ -39,31 +40,31 @@ char
 	static char	buff[BUFFER_SIZE];
 	char		*line;
 	ssize_t		skip;
-
-	int			endline = 0;
+	ssize_t		n;
+	int			endline;
 	
+	n = 0;
+	endline = 0;	
 	line = ft_strdup("", 0);	
 	while (!endline)
 	{
 		if (buff[0] == 0)
 		{
-			read(fd, buff, BUFFER_SIZE);
-			line = ft_strjoin(line, buff);
+			n = read(fd, buff, BUFFER_SIZE);
+			if (!n)
+			{
+				free(line);
+				return (0);
+			}
 		}
-		else
-		{	
-			line = ft_strjoin(line, buff);
-		}
+		line = ft_strjoin(line, buff);
 		skip = ft_skip(line);
-		printf("\n\tskip line : %.2ld", skip);
 		if (line[skip] == '\n')
 		{
 			endline = 1;
-			if (skip + 1 != ft_strlen(line))
-				line = ft_strsub(line, skip + 1);
+			line = ft_strsub(line, skip + 1);
 		}
 		skip = ft_skip(buff);
-		printf("\tskip buff: %.2ld\n", skip);
 		ft_decal(buff, skip);
 	}	
 	return (line);

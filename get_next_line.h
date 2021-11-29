@@ -11,7 +11,7 @@
 void	examine(char *s, char *d);
 
 	#ifndef BUFFER_SIZE
-	# define BUFFER_SIZE 4
+	# define BUFFER_SIZE	1 
 	#endif /* BUFFER_SIZE */
 
 char	*get_next_line(int fd);

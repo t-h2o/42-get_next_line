@@ -1,5 +1,5 @@
 #include	"./get_next_line.h"
-
+#define		FILE	./file2
 void
 	examine(char *s, char *d)
 {
@@ -23,9 +23,9 @@ void
 	int		fd;
 	char	*s;
 
-	fd = open("./file", O_RDONLY);
+	fd = open("./file2", O_RDONLY);
 	
-	printf("\n[START TEST]\nFD = %.2d\t calls = %.2d\tBS = %d\n\n", fd, i, BUFFER_SIZE);
+	printf("\n[START TEST]\tbuffer size is %d char\n\n", BUFFER_SIZE);
 	int p = i;
 	while (i--)
 	{
@@ -46,6 +46,6 @@ int
 	main()
 {
 //	test(3);
-	test(9);
+	test(33);
 	return (0);
 }
