@@ -64,6 +64,3 @@ char
 		r[i] = s[i + n];
 	return (r);
 }
-/*	string to duplicate : s
- *	number char to skip : n
- */

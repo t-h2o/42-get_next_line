@@ -8,7 +8,6 @@ void
 	ssize_t	i;
 	ssize_t	len;
 
-	n++;
 	i = 0;
 	len = ft_strlen(s);
 	while (len-- > n)
@@ -17,9 +16,7 @@ void
 		i++;
 	}
 	while (n--)
-	{
 		s[i++] = 0;
-	}
 	return ;
 }
 
@@ -40,32 +37,27 @@ char
 	static char	buff[BUFFER_SIZE];
 	char		*line;
 	ssize_t		skip;
-	ssize_t		n;
 	int			endline;
 	
-	n = 0;
 	endline = 0;	
 	line = ft_strdup("", 0);	
 	while (!endline)
 	{
 		if (buff[0] == 0)
-		{
-			n = read(fd, buff, BUFFER_SIZE);
-			if (!n)
+			if (!(read(fd, buff, BUFFER_SIZE)))
 			{
 				free(line);
 				return (0);
 			}
-		}
-		line = ft_strjoin(line, buff);
+		if (!line || !(line = ft_strjoin(line, buff)))
+			return (0);
 		skip = ft_skip(line);
 		if (line[skip] == '\n')
 		{
 			endline = 1;
 			line = ft_strsub(line, skip + 1);
 		}
-		skip = ft_skip(buff);
-		ft_decal(buff, skip);
+		ft_decal(buff, ft_skip(buff) + 1);
 	}	
 	return (line);
 }
