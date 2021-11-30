@@ -22,6 +22,9 @@ char
 	char	*r;
 
 	len = 0;
+
+	printf("s1 : %s\ns2 : %s\n", s1, s2);
+
 	len += ft_strlen(s1);
 	len += ft_strlen(s2);
 	r = (char *)malloc(len + 1);
@@ -42,7 +45,8 @@ ssize_t
 	ft_strlen(char *s)
 {
 	ssize_t	r;
-
+	if (!s)
+		return (0);
 	r = 0;
 	while(s[r])
 		r++;

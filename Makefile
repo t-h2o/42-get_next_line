@@ -1,6 +1,6 @@
 SRCS	=	main.c get_next_line.c get_next_line_utils.c
 
-BS		=	1
+BS		=	12
 
 OBJS	=	${SRCS:.c=.o}
 
@@ -14,16 +14,20 @@ RM		=	rm -f
 
 
 .c.o:
-	${CC} ${FLAGS} -c $< -o ${<:.c=.o}
+	${CC} ${FLAGS} -c -D BUFFER_SIZE=${BS} $< -o ${<:.c=.o}
 
 ${NAME}:	${OBJS}
-	${CC} ${FLAGS} -o ${NAME} ${OBJS}
+	${CC} ${FLAGS} -o ${NAME} -D BUFFER_SIZE=${BS} ${OBJS}
 
 gcc:
-	gcc -Wall -Wextra -Werror -o ${NAME} -D BUFFER_SIZE=${BS} ${SRCS}
+	gcc -Wall -Wextra -Werror -g -o ${NAME} -D BUFFER_SIZE=${BS} ${SRCS} -fsanitize=address
 	clear
-	./${NAME} | less
+	./${NAME} 
 #	valgrind --leak-check=full ./${NAME}
+	
+	# to remove at the end	
+# 	-g compiler a moitier et donne la ligne
+# 	-fsanitize=address
 
 all:		${NAME}
 
@@ -40,7 +44,7 @@ log:
 
 norm:
 	norminette ${SRCS}
-	norminette -RCheckDefine ${HEADER}
+#	norminette -RCheckDefine ${HEADER}
 
 leak:
 	valgrind --leak-check=full ./${NAME}

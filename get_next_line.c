@@ -7,18 +7,30 @@ void
 {
 	ssize_t	i;
 	ssize_t	len;
-
+	
+	n++;
 	i = 0;
 	len = ft_strlen(s);
-	while (len-- > n)
-	{
-		s[i] = s[i + n];
-		i++;
+	printf("len %ld : decal %ld\n", len, n);
+	examine(s, "avatn");
+	if (n > len)
+		s[0] = 0;
+	else
+	{	
+		while (i <= len - n)
+		{
+			s[i] = s[i + n];
+			i++;
+		}
 	}
-	while (n--)
-		s[i++] = 0;
+	examine(s, "Decal");	
 	return ;
 }
+/*
+ * 	SKIPsaCommence
+ *	skip = 4
+ * 	saCommence
+ */
 
 static ssize_t
 	ft_skip(char *s)
@@ -39,16 +51,21 @@ char
 	ssize_t		skip;
 	int			endline;
 	
+	int	cmp = 0;
+
 	endline = 0;	
 	line = ft_strdup("", 0);	
 	while (!endline)
 	{
 		if (buff[0] == 0)
+		{
+			printf("\n\tREAD\n");
 			if (!(read(fd, buff, BUFFER_SIZE)))
 			{
 				free(line);
 				return (0);
 			}
+		}
 		if (!line || !(line = ft_strjoin(line, buff)))
 			return (0);
 		skip = ft_skip(line);
@@ -57,7 +74,9 @@ char
 			endline = 1;
 			line = ft_strsub(line, skip + 1);
 		}
-		ft_decal(buff, ft_skip(buff) + 1);
+		ft_decal(buff, ft_skip(buff));
+		printf("\n%.3d | %s", cmp, line);
+		cmp++;
 	}	
 	return (line);
 }

@@ -1,5 +1,5 @@
 #include	"./get_next_line.h"
-#define		FILE	./file2
+
 void
 	examine(char *s, char *d)
 {
@@ -45,7 +45,6 @@ void
 int
 	main()
 {
-//	test(3);
-	test(33);
+	test(9);
 	return (0);
 }
