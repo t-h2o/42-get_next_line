@@ -1,6 +1,6 @@
 SRCS	=	main.c get_next_line.c get_next_line_utils.c 
 HEADER	=	get_next_line.h
-BS		=	1
+BS		=	42
 
 OBJS	=	${SRCS:.c=.o}
 

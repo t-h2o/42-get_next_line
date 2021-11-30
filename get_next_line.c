@@ -6,7 +6,7 @@
 /*   By: tgrivel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 14:45:19 by tgrivel           #+#    #+#             */
-/*   Updated: 2021/11/30 17:51:04 by tgrivel          ###   ########.fr       */
+/*   Updated: 2021/11/30 17:54:33 by tgrivel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ char
 {
 	static char	buff[BUFFER_SIZE];
 	char		*line;
+	ssize_t		n;
 
 	if (BUFFER_SIZE <= 0 || fd < 0)
 		return (0);
@@ -54,8 +55,11 @@ char
 	{
 		if (buff[0] == 0)
 		{
-			if (!(read(fd, buff, BUFFER_SIZE)))
+			n = read(fd, buff, BUFFER_SIZE);
+			if (!n && !line)
 				return (0);
+			if (!n)
+				return (line);
 		}
 		line = ft_strjoin(line, buff);
 		if (!line)
