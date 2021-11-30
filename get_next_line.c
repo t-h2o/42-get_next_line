@@ -1,18 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tgrivel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/11/30 14:45:19 by tgrivel           #+#    #+#             */
+/*   Updated: 2021/11/30 15:15:19 by tgrivel          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include	"./get_next_line.h"
-#include	<string.h>
-#define		BUFF		examine(buff, "buff");
 
 void
 	ft_decal(char *s, ssize_t n)
 {
 	ssize_t	i;
 	ssize_t	len;
-	
+
 	n++;
 	i = 0;
-	len = ft_strlen(s);
-	printf("len %ld : decal %ld\n", len, n);
-	examine(s, "avatn");
+	len = ft_skip(s, '\0');
 	if (n > len)
 		s[0] = 0;
 	else
@@ -23,24 +31,7 @@ void
 			i++;
 		}
 	}
-	examine(s, "Decal");	
 	return ;
-}
-/*
- * 	SKIPsaCommence
- *	skip = 4
- * 	saCommence
- */
-
-static ssize_t
-	ft_skip(char *s)
-{
-	ssize_t	skip;
-
-	skip = 0;
-	while (s[skip] && s[skip] != '\n')
-		skip++;
-	return (skip);
 }
 
 char
@@ -49,34 +40,30 @@ char
 	static char	buff[BUFFER_SIZE];
 	char		*line;
 	ssize_t		skip;
-	int			endline;
-	
-	int	cmp = 0;
 
-	endline = 0;	
-	line = ft_strdup("", 0);	
-	while (!endline)
+	line = ft_strdup("", 0);
+	if (!line)
+		return (0);
+	while (1)
 	{
 		if (buff[0] == 0)
 		{
-			printf("\n\tREAD\n");
 			if (!(read(fd, buff, BUFFER_SIZE)))
 			{
 				free(line);
 				return (0);
 			}
 		}
-		if (!line || !(line = ft_strjoin(line, buff)))
+		line = ft_strjoin(line, buff);
+		if (!line)
 			return (0);
-		skip = ft_skip(line);
+		ft_decal(buff, ft_skip(buff, '\n'));
+		skip = ft_skip(line, '\n');
 		if (line[skip] == '\n')
 		{
-			endline = 1;
 			line = ft_strsub(line, skip + 1);
+			break ;
 		}
-		ft_decal(buff, ft_skip(buff));
-		printf("\n%.3d | %s", cmp, line);
-		cmp++;
 	}	
 	return (line);
 }

@@ -1,9 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tgrivel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/11/30 14:43:05 by tgrivel           #+#    #+#             */
+/*   Updated: 2021/11/30 15:15:02 by tgrivel          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include	"./get_next_line.h"
 
 char
 	*ft_strsub(char *s, ssize_t n)
 {
 	char	*r;
+
 	r = (char *)malloc(n + 1);
 	if (!r)
 		return (0);
@@ -22,12 +35,10 @@ char
 	char	*r;
 
 	len = 0;
-
-	printf("s1 : %s\ns2 : %s\n", s1, s2);
-
-	len += ft_strlen(s1);
-	len += ft_strlen(s2);
+	len += ft_skip(s1, '\0');
+	len += ft_skip(s2, '\0');
 	r = (char *)malloc(len + 1);
+	r[len] = 0;
 	if (!r)
 		return (0);
 	i = 0;
@@ -38,19 +49,20 @@ char
 	while (s2[i])
 		r[len++] = s2[i++];
 	free(s1);
-	return (r);	
+	return (r);
 }
 
 ssize_t
-	ft_strlen(char *s)
+	ft_skip(char *s, char c)
 {
-	ssize_t	r;
+	ssize_t	n;
+
 	if (!s)
 		return (0);
-	r = 0;
-	while(s[r])
-		r++;
-	return (r);
+	n = 0;
+	while (s[n] && s[n] != c)
+		n++;
+	return (n);
 }
 
 char
@@ -59,7 +71,7 @@ char
 	char	*r;
 	ssize_t	i;
 
-	i = ft_strlen(s) - n;
+	i = ft_skip(s, '\0') - n;
 	r = (char *)malloc(i + 1);
 	if (!r)
 		return (0);

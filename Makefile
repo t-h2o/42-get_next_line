@@ -1,6 +1,6 @@
-SRCS	=	main.c get_next_line.c get_next_line_utils.c
-
-BS		=	12
+SRCS	=	main.c get_next_line.c get_next_line_utils.c 
+HEADER	=	get_next_line.h
+BS		=	1
 
 OBJS	=	${SRCS:.c=.o}
 
@@ -44,7 +44,7 @@ log:
 
 norm:
 	norminette ${SRCS}
-#	norminette -RCheckDefine ${HEADER}
+	norminette ${HEADER}
 
 leak:
 	valgrind --leak-check=full ./${NAME}

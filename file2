@@ -1,7 +1,10 @@
-Je
-vais
-a
-paris
+je
+vais a paris
+demain matin ou cette
+apres-midi ou Dimanche soir apres le 
+coucher de soleil ou celui de la lune ou des etoiles
+
+
 function get_next_line in a loop will then allow you to read the text
 available on the file descriptor one line at a time until the end of it.
 

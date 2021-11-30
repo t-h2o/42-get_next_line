@@ -1,20 +1,33 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tgrivel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/11/30 14:56:52 by tgrivel           #+#    #+#             */
+/*   Updated: 2021/11/30 15:22:35 by tgrivel          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include	"./get_next_line.h"
 
 void
 	examine(char *s, char *d)
 {
+	int	i;
+
+	i = -1;
 	if (!s)
 		return ;
-	printf("\n");
-	int	i = -1;
 	while (s[++i])
 	{
 		if (s[i] == 10)
-			printf("%s s[%.2i] :\t%s\t%i\n", d, i, "\\n", s[i]);	
+			printf("%s s[%.2i] :\t%s\t%i\n", d, i, "\\n", s[i]);
 		else
-			printf("%s s[%.2i] :\t%c\t%i\n", d, i, s[i], s[i]);	
+			printf("%s s[%.2i] :\t%c\t%i\n", d, i, s[i], s[i]);
 	}
-	printf("%s s[%.2i] :\t%s\t%i\n", d, i, "\\0", s[i]);	
+	printf("%s s[%.2i] :\t%s\t%i\n", d, i, "\\0", s[i]);
 }
 
 void
@@ -22,29 +35,28 @@ void
 {
 	int		fd;
 	char	*s;
+	int		p;
 
+	p = i;
 	fd = open("./file2", O_RDONLY);
-	
 	printf("\n[START TEST]\tbuffer size is %d char\n\n", BUFFER_SIZE);
-	int p = i;
 	while (i--)
 	{
 		s = get_next_line(fd);
 		if (s)
-			printf("\n%.3i | %s", p - i, s);
+			printf("   %.3i  %s", p - i, s);
 		else
-			printf("%.3i | %s\n", p - i, "EOF");
-//		examine(s, "[RETUR]");
+			printf("MAIN | %.3i | %s\n", p - i, "EOF");
 		free(s);
 		s = 0;
 	}
-	printf("\n\n[end test]\n");
+	printf("\n[end test]\n");
 	close(fd);
 }
 
 int
-	main()
+	main(void)
 {
-	test(9);
+	test(34);
 	return (0);
 }
