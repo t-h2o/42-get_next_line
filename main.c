@@ -6,7 +6,7 @@
 /*   By: tgrivel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 14:56:52 by tgrivel           #+#    #+#             */
-/*   Updated: 2021/11/30 15:22:35 by tgrivel          ###   ########.fr       */
+/*   Updated: 2021/11/30 17:49:26 by tgrivel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void
 	int		p;
 
 	p = i;
-	fd = open("./file2", O_RDONLY);
+	fd = open("./file1", O_RDONLY);
 	printf("\n[START TEST]\tbuffer size is %d char\n\n", BUFFER_SIZE);
 	while (i--)
 	{

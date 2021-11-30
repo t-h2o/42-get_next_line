@@ -6,7 +6,7 @@
 /*   By: tgrivel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 14:43:05 by tgrivel           #+#    #+#             */
-/*   Updated: 2021/11/30 15:15:02 by tgrivel          ###   ########.fr       */
+/*   Updated: 2021/11/30 15:46:12 by tgrivel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,10 @@ char
 	ssize_t	i;
 	char	*r;
 
+	if (!s1)
+		s1 = ft_strdup("", 0);
+	if (!s1)
+		return (0);
 	len = 0;
 	len += ft_skip(s1, '\0');
 	len += ft_skip(s2, '\0');

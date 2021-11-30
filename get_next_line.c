@@ -6,11 +6,18 @@
 /*   By: tgrivel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 14:45:19 by tgrivel           #+#    #+#             */
-/*   Updated: 2021/11/30 15:15:19 by tgrivel          ###   ########.fr       */
+/*   Updated: 2021/11/30 17:51:04 by tgrivel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"./get_next_line.h"
+
+char
+	*freeptr(char *ptr)
+{
+	free(ptr);
+	return (0);
+}
 
 void
 	ft_decal(char *s, ssize_t n)
@@ -39,29 +46,24 @@ char
 {
 	static char	buff[BUFFER_SIZE];
 	char		*line;
-	ssize_t		skip;
 
-	line = ft_strdup("", 0);
-	if (!line)
+	if (BUFFER_SIZE <= 0 || fd < 0)
 		return (0);
+	line = 0;
 	while (1)
 	{
 		if (buff[0] == 0)
 		{
 			if (!(read(fd, buff, BUFFER_SIZE)))
-			{
-				free(line);
 				return (0);
-			}
 		}
 		line = ft_strjoin(line, buff);
 		if (!line)
 			return (0);
 		ft_decal(buff, ft_skip(buff, '\n'));
-		skip = ft_skip(line, '\n');
-		if (line[skip] == '\n')
+		if (line[ft_skip(line, '\n')] == '\n')
 		{
-			line = ft_strsub(line, skip + 1);
+			line = ft_strsub(line, ft_skip(line, '\n') + 1);
 			break ;
 		}
 	}	

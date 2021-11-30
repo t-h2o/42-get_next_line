@@ -20,7 +20,8 @@ ${NAME}:	${OBJS}
 	${CC} ${FLAGS} -o ${NAME} -D BUFFER_SIZE=${BS} ${OBJS}
 
 gcc:
-	gcc -Wall -Wextra -Werror -g -o ${NAME} -D BUFFER_SIZE=${BS} ${SRCS} -fsanitize=address
+	gcc -Wall -Wextra -Werror -D BUFFER_SIZE=42 ${SRCS}
+#	gcc -Wall -Wextra -Werror -g -o ${NAME} -D BUFFER_SIZE=${BS} ${SRCS} -fsanitize=address
 	clear
 	./${NAME} 
 #	valgrind --leak-check=full ./${NAME}
@@ -43,8 +44,7 @@ log:
 	git log --graph --oneline
 
 norm:
-	norminette ${SRCS}
-	norminette ${HEADER}
+	norminette ${SRCS} ${HEADER}
 
 leak:
 	valgrind --leak-check=full ./${NAME}

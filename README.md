@@ -4,6 +4,10 @@ that returns a lineending with a newline,
 read from a file descriptor.
 
 
+## name functions
+
+ft_name* -> gnl_*
+
 ## Error
 
 you can't malloc a static variable
