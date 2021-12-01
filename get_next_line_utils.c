@@ -12,6 +12,19 @@
 
 #include	"./get_next_line.h"
 
+ssize_t
+	gnl_skip(char *s, char c)
+{
+	ssize_t	n;
+
+	if (!s)
+		return (0);
+	n = 0;
+	while (s[n] && s[n] != c)
+		n++;
+	return (n);
+}
+
 char
 	*gnl_strsub(char *s, ssize_t n)
 {
@@ -36,12 +49,13 @@ char
 	char	*r;
 
 	if (!s1)
-		s1 = gnl_strdup("", 0);
+	{
+		s1 = malloc(1);
+		s1[0] = 0;
+	}
 	if (!s1)
 		return (0);
-	len = 0;
-	len += gnl_skip(s1, '\0');
-	len += gnl_skip(s2, '\0');
+	len = gnl_skip(s1, '\0') + gnl_skip(s2, '\0');
 	r = (char *)malloc(len + 1);
 	r[len] = 0;
 	if (!r)
@@ -55,34 +69,4 @@ char
 		r[len++] = s2[i++];
 	free(s1);
 	return (r);
-}
-
-ssize_t
-	gnl_skip(char *s, char c)
-{
-	ssize_t	n;
-
-	if (!s)
-		return (0);
-	n = 0;
-	while (s[n] && s[n] != c)
-		n++;
-	return (n);
-}
-
-char
-	*gnl_strdup(char *s, ssize_t n)
-{
-	char	*r;
-	ssize_t	len;
-
-	len = gnl_skip(s, '\0') - n;
-	r = (char *)malloc(len + 1);
-	if (!r)
-		return (0);
-	r[len] = 0;
-	while (len--)
-		r[len] = s[len + n];
-	return (r);
-
 }

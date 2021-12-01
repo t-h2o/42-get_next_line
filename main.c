@@ -61,8 +61,8 @@ void
 int
 	main(void)
 {
-//	test(34, "file1");
+	test(34, "file1");
 	test(34, "file2");
-//	test(34, "file3");
+	test(34, "file3");
 	return (0);
 }

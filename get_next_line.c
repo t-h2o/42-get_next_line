@@ -12,16 +12,8 @@
 
 #include	"./get_next_line.h"
 
-/*
-static char
-	*freeptr(char *ptr)
-{
-	free(ptr);
-	return (0);
-}	*/
-
-void
-	gnl_decal(char *s, ssize_t n)
+char
+	*gnl_decal(char *s, ssize_t n)
 {
 	ssize_t	i;
 	ssize_t	len;
@@ -30,7 +22,11 @@ void
 	i = 0;
 	len = gnl_skip(s, '\0');
 	if (n > len)
-		s[0] = 0;
+	{
+		len = BUFFER_SIZE + 2;
+		while (len--)
+			s[len] = 0;
+	}
 	else
 	{	
 		while (i <= len - n)
@@ -39,7 +35,7 @@ void
 			i++;
 		}
 	}
-	return ;
+	return (0);
 }
 
 char
@@ -58,16 +54,15 @@ char
 		{
 			n = read(fd, buff, BUFFER_SIZE);
 			if (!n && !line)
-				return (0);
+				return (gnl_decal(buff, BUFFER_SIZE + 5));
 			if (!n)
 				return (line);
 		}
 		line = gnl_strjoin(line, buff);
+		if (!line)
+			return (0);
 		gnl_decal(buff, gnl_skip(buff, '\n'));
 		if (line[gnl_skip(line, '\n')] == '\n')
-		{
 			return (gnl_strsub(line, gnl_skip(line, '\n')));
-		}
 	}	
-	return (line);
 }

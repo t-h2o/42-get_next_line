@@ -25,8 +25,7 @@ gcc:
 	clear
 	./${NAME} 
 #	valgrind --leak-check=full ./${NAME}
-	
-	# to remove at the end	
+# to remove at the end	
 # 	-g compiler a moitier et donne la ligne
 # 	-fsanitize=address
 
