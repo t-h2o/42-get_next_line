@@ -12,22 +12,23 @@
 
 #include	"./get_next_line.h"
 
-char
+/*
+static char
 	*freeptr(char *ptr)
 {
 	free(ptr);
 	return (0);
-}
+}	*/
 
 void
-	ft_decal(char *s, ssize_t n)
+	gnl_decal(char *s, ssize_t n)
 {
 	ssize_t	i;
 	ssize_t	len;
 
 	n++;
 	i = 0;
-	len = ft_skip(s, '\0');
+	len = gnl_skip(s, '\0');
 	if (n > len)
 		s[0] = 0;
 	else
@@ -61,14 +62,11 @@ char
 			if (!n)
 				return (line);
 		}
-		line = ft_strjoin(line, buff);
-		if (!line)
-			return (0);
-		ft_decal(buff, ft_skip(buff, '\n'));
-		if (line[ft_skip(line, '\n')] == '\n')
+		line = gnl_strjoin(line, buff);
+		gnl_decal(buff, gnl_skip(buff, '\n'));
+		if (line[gnl_skip(line, '\n')] == '\n')
 		{
-			line = ft_strsub(line, ft_skip(line, '\n') + 1);
-			break ;
+			return (gnl_strsub(line, gnl_skip(line, '\n')));
 		}
 	}	
 	return (line);

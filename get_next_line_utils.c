@@ -13,10 +13,11 @@
 #include	"./get_next_line.h"
 
 char
-	*ft_strsub(char *s, ssize_t n)
+	*gnl_strsub(char *s, ssize_t n)
 {
 	char	*r;
 
+	n++;
 	r = (char *)malloc(n + 1);
 	if (!r)
 		return (0);
@@ -28,19 +29,19 @@ char
 }
 
 char
-	*ft_strjoin(char *s1, char *s2)
+	*gnl_strjoin(char *s1, char *s2)
 {
 	ssize_t	len;
 	ssize_t	i;
 	char	*r;
 
 	if (!s1)
-		s1 = ft_strdup("", 0);
+		s1 = gnl_strdup("", 0);
 	if (!s1)
 		return (0);
 	len = 0;
-	len += ft_skip(s1, '\0');
-	len += ft_skip(s2, '\0');
+	len += gnl_skip(s1, '\0');
+	len += gnl_skip(s2, '\0');
 	r = (char *)malloc(len + 1);
 	r[len] = 0;
 	if (!r)
@@ -57,7 +58,7 @@ char
 }
 
 ssize_t
-	ft_skip(char *s, char c)
+	gnl_skip(char *s, char c)
 {
 	ssize_t	n;
 
@@ -70,17 +71,18 @@ ssize_t
 }
 
 char
-	*ft_strdup(char *s, ssize_t n)
+	*gnl_strdup(char *s, ssize_t n)
 {
 	char	*r;
-	ssize_t	i;
+	ssize_t	len;
 
-	i = ft_skip(s, '\0') - n;
-	r = (char *)malloc(i + 1);
+	len = gnl_skip(s, '\0') - n;
+	r = (char *)malloc(len + 1);
 	if (!r)
 		return (0);
-	r[i] = 0;
-	while (i--)
-		r[i] = s[i + n];
+	r[len] = 0;
+	while (len--)
+		r[len] = s[len + n];
 	return (r);
+
 }

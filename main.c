@@ -31,24 +31,28 @@ void
 }
 
 void
-	test(int i)
+	test(int i, char *file)
 {
 	int		fd;
 	char	*s;
 	int		p;
 
 	p = i;
-	fd = open("./file3", O_RDONLY);
+	fd = open(file, O_RDONLY);
 	printf("\n[START TEST]\tbuffer size is %d char\n\n", BUFFER_SIZE);
 	while (i--)
 	{
 		s = get_next_line(fd);
 		if (s)
-			printf("   %.3i  %s", p - i, s);
+		{
+			printf("---%.3i  %s", p - i, s);
+			free(s);
+		}
 		else
+		{
 			printf("MAIN | %.3i | %s\n", p - i, "EOF");
-		free(s);
-		s = 0;
+			i = 0;
+		}
 	}
 	printf("\n[end test]\n");
 	close(fd);
@@ -57,6 +61,8 @@ void
 int
 	main(void)
 {
-	test(34);
+//	test(34, "file1");
+	test(34, "file2");
+//	test(34, "file3");
 	return (0);
 }

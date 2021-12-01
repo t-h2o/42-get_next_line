@@ -28,15 +28,15 @@ void	examine(char *s, char *d);
 
 	//	get-next-line
 
-void	ft_decal(char *s, ssize_t n);
-ssize_t	ft_skip(char *s, char c);
+void	gnl_decal(char *s, ssize_t n);
+ssize_t	gnl_skip(char *s, char c);
 char	*get_next_line(int fd);
 
 	//	get_next_line-utils
 
-char	*ft_strsub(char *s, ssize_t n);
-char	*ft_strjoin(char *s1, char *s2);
-ssize_t	ft_strlen(char *s);
-char	*ft_strdup(char *s, ssize_t n);
+char	*gnl_strsub(char *s, ssize_t n);
+char	*gnl_strjoin(char *s1, char *s2);
+ssize_t	gnl_strlen(char *s);
+char	*gnl_strdup(char *s, ssize_t n);
 
 #endif /* GET_NEXT_LINE_H */
