@@ -1,4 +1,9 @@
-SRCS	=	main.c get_next_line.c get_next_line_utils.c 
+SRC_DIR	=	./srcs
+SRCS	=	${addprefix ${SRC_DIR}/, \
+			main.c \
+			get_next_line.c \
+			get_next_line_utils.c }
+
 HEADER	=	get_next_line.h
 BS		=	42
 
@@ -24,7 +29,6 @@ gcc:
 #	gcc -Wall -Wextra -Werror -g -o ${NAME} -D BUFFER_SIZE=${BS} ${SRCS} -fsanitize=address
 	clear
 	./${NAME} 
-#	valgrind --leak-check=full ./${NAME}
 # to remove at the end	
 # 	-g compiler a moitier et donne la ligne
 # 	-fsanitize=address
