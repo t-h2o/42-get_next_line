@@ -1,55 +1,59 @@
-SRC_DIR	=	./srcs
-SRCS	=	${addprefix ${SRC_DIR}/, \
-			main.c \
-			get_next_line.c \
-			get_next_line_utils.c }
+NAME	=	program	
 
-HEADER	=	get_next_line.h
-BS		=	42
 
-OBJS	=	${SRCS:.c=.o}
+#	Compilation setting
 
 CC		=	gcc
-
 FLAGS	=	-Wall -Wextra -Werror
+BS		=	42
 
-NAME	=	program
+
+#	Directories
+
+DIR_SRC	=	./srcs
+DIR_OBJ	=	./objs
+DIR_INC	=	./headers/
+
+
+#	Sources
+
+SRCS	=	${DIR_SRC}/main.c			\
+			${DIR_SRC}/get_next_line.c	\
+			${DIR_SRC}/get_next_line_utils.c
+
+
+OBJS	=	${addprefix ${DIR_OBJ}/, ${notdir ${SRCS:.c=.o}}}
+
+HEADER	=	${DIR_INC}get_next_line.h
 
 RM		=	rm -f
 
 
-.c.o:
-	${CC} ${FLAGS} -c -D BUFFER_SIZE=${BS} $< -o ${<:.c=.o}
+vpath %.c ${DIR_SRC}
+
+
+all : ${NAME}
+
 
 ${NAME}:	${OBJS}
-	${CC} ${FLAGS} -o ${NAME} -D BUFFER_SIZE=${BS} ${OBJS}
+	${CC} ${FLAGS} -o ${NAME}  ${OBJS}
 
-gcc:
-	gcc -Wall -Wextra -Werror -D BUFFER_SIZE=42 ${SRCS}
-#	gcc -Wall -Wextra -Werror -g -o ${NAME} -D BUFFER_SIZE=${BS} ${SRCS} -fsanitize=address
-	clear
-	./${NAME} 
-# to remove at the end	
-# 	-g compiler a moitier et donne la ligne
-# 	-fsanitize=address
+${DIR_OBJ}/%.o : %.c | ${DIR_OBJ}
+	${CC} ${CFLAGS} -o $@ -I ${DIR_INC}  -c $^ -D BUFFER_SIZE=${BS}
 
-all:		${NAME}
+${DIR_OBJ} :
+	@mkdir -p ${DIR_OBJ}
+
 
 clean:
 	${RM} ${OBJS}
 
-fclean:		clean
+fclean:	clean
 	${RM} ${NAME}
 
-re:			fclean	all
+re:		fclean all
 
-log:
-	git log --graph --oneline
 
 norm:
-	norminette ${SRCS} ${HEADER}
-
-leak:
-	valgrind --leak-check=full ./${NAME}
-
-.PHONY: all clean fclean re bonus so
+	norminette ${SRCS}
+	norminette ${HEADER}

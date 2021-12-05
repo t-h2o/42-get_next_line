@@ -61,8 +61,9 @@ void
 int
 	main(void)
 {
-	test(34, "./files/file1");
-	test(34, "./files/file2");
-	test(34, "./files/file3");
+	test(34, "./Files/file1");
+	test(34, "./Files/file2");
+	test(34, "./Files/file3");
+	test(34, "./Files/file2");
 	return (0);
 }

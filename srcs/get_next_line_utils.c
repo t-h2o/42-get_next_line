@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"./get_next_line.h"
+#include	"get_next_line.h"
 
 ssize_t
 	gnl_skip(char *s, char c)

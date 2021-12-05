@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"./get_next_line.h"
+#include	"get_next_line.h"
 
 char
 	*gnl_decal(char *s, ssize_t n)
