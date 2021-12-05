@@ -39,7 +39,7 @@ ${NAME}:	${OBJS}
 	${CC} ${FLAGS} -o ${NAME}  ${OBJS}
 
 ${DIR_OBJ}/%.o : %.c | ${DIR_OBJ}
-	${CC} ${CFLAGS} -o $@ -I ${DIR_INC}  -c $^ -D BUFFER_SIZE=${BS}
+	${CC} ${CFLAGS} -D BUFFER_SIZE=${BS} -I ${DIR_INC} -o $@ -c $^
 
 ${DIR_OBJ} :
 	@mkdir -p ${DIR_OBJ}
