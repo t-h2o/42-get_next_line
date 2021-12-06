@@ -6,11 +6,30 @@
 /*   By: tgrivel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 14:56:52 by tgrivel           #+#    #+#             */
-/*   Updated: 2021/11/30 18:00:31 by tgrivel          ###   ########.fr       */
+/*   Updated: 2021/12/06 12:22:12 by tgrivel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"./get_next_line.h"
+
+void
+	examine_buffer(char *s, char *d)
+{
+	int	i;
+
+	i = -1;
+	if (!s)
+		return ;
+	while (i++ < BUFFER_SIZE)
+	{
+		if (s[i] == 10)
+			printf("%s s[%.2i] :\t%s\t%i\n", d, i, "\\n", s[i]);
+		else if (s[i] == 0)
+			printf("%s s[%.2i] :\t%s\t%i\n", d, i, "\\0", s[i]);
+		else
+			printf("%s s[%.2i] :\t%c\t%i\n", d, i, s[i], s[i]);
+	}
+}
 
 void
 	examine(char *s, char *d)

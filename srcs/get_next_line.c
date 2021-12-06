@@ -6,7 +6,7 @@
 /*   By: tgrivel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 14:45:19 by tgrivel           #+#    #+#             */
-/*   Updated: 2021/11/30 17:54:33 by tgrivel          ###   ########.fr       */
+/*   Updated: 2021/12/06 12:28:25 by tgrivel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ char
 	n++;
 	i = 0;
 	len = gnl_skip(s, '\0');
-	if (n > len)
+	if (n >= len)
 	{
-		len = BUFFER_SIZE + 2;
+		len = BUFFER_SIZE + 1;
 		while (len--)
 			s[len] = 0;
 	}
@@ -45,7 +45,7 @@ char
 	char		*line;
 	ssize_t		n;
 
-	if (BUFFER_SIZE <= 0 || fd < 0)
+	if (BUFFER_SIZE <= 0 || (read(fd, 0, 0) != 0))
 		return (0);
 	line = 0;
 	while (1)

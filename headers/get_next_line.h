@@ -6,7 +6,7 @@
 /*   By: tgrivel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 15:25:11 by tgrivel           #+#    #+#             */
-/*   Updated: 2021/11/30 15:37:10 by tgrivel          ###   ########.fr       */
+/*   Updated: 2021/12/06 12:30:23 by tgrivel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 	//	main
 
 void	examine(char *s, char *d);
+void	examine_buffer(char *s, char *d);
 
 	//	get-next-line
 
