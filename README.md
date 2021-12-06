@@ -111,8 +111,8 @@ Rest 0   │How are y\n│
 ```
 
 
-[!gif](https://github.com/theo-grivel/theo-grivel/blob/main/assets/homemade.gif)
-[!gif](https://github.com/theo-grivel/theo-grivel/blob/main/assets/homemade.gif)
-[!gif](https://github.com/theo-grivel/theo-grivel/blob/main/assets/homemade.gif)
-[!gif](https://github.com/theo-grivel/theo-grivel/blob/main/assets/homemade.gif)
-[!gif](https://github.com/theo-grivel/theo-grivel/blob/main/assets/homemade.gif)
+![gif](https://github.com/theo-grivel/theo-grivel/blob/main/assets/homemade.gif)
+![gif](https://github.com/theo-grivel/theo-grivel/blob/main/assets/homemade.gif)
+![gif](https://github.com/theo-grivel/theo-grivel/blob/main/assets/homemade.gif)
+![gif](https://github.com/theo-grivel/theo-grivel/blob/main/assets/homemade.gif)
+![gif](https://github.com/theo-grivel/theo-grivel/blob/main/assets/homemade.gif)
