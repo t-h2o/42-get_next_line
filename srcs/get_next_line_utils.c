@@ -6,7 +6,7 @@
 /*   By: tgrivel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 14:43:05 by tgrivel           #+#    #+#             */
-/*   Updated: 2021/12/06 14:32:51 by tgrivel          ###   ########.fr       */
+/*   Updated: 2021/12/07 14:00:41 by tgrivel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,10 @@ char
 	if (!s1)
 	{
 		s1 = malloc(1);
+		if (!s1)
+			return (0);
 		s1[0] = 0;
 	}
-	if (!s1)
-		return (0);
 	len = gnl_skip(s1, '\0') + gnl_skip(s2, '\0');
 	r = (char *)malloc(len + 1);
 	if (!r)
