@@ -41,7 +41,7 @@ char
 char
 	*get_next_line(int fd)
 {
-	static char	buff[BUFFER_SIZE];
+	static char	buff[BUFFER_SIZE + 1];
 	char		*line;
 	ssize_t		n;
 
