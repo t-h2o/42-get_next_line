@@ -62,11 +62,10 @@ char
 			return (0);
 		s1[0] = 0;
 	}
-	len = gnl_skip(s1, '\0') + gnl_skip(s2, '\0');
-	r = (char *)malloc(len + 1);
+	r = (char *)malloc(gnl_skip(s1, '\0') + gnl_skip(s2, '\0') + 1);
 	if (!r)
 		return (0);
-	r[len] = 0;
+	r[gnl_skip(s1, '\0') + gnl_skip(s2, '\0')] = 0;
 	i = 0;
 	len = 0;
 	while (s1[i])
