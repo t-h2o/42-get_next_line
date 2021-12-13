@@ -13,37 +13,39 @@
 #include	"get_next_line.h"
 
 char
-	*gnl_decal(char *s, ssize_t n)
+	*gnl_decal(char *s)
 {
 	ssize_t	i;
-	ssize_t	len;
+	ssize_t	n;
 
-	n++;
 	i = 0;
-	len = gnl_skip(s, '\0');
-	if (n >= len)
+	n = gnl_skip(s, '\n');
+	while (i <= BUFFER_SIZE - n)
 	{
-		len = BUFFER_SIZE + 1;
-		while (len--)
-			s[len] = 0;
+		s[i] = s[i + n + 1];
+		i++;
 	}
-	else
-	{	
-		while (i <= len - n)
-		{
-			s[i] = s[i + n];
-			i++;
-		}
-	}
+	while (i <= BUFFER_SIZE + 1)
+		s[i++] = 0;
 	return (0);
 }
+/*		BS	= 5 (buff = 6)
+ *
+ *		in	:	xNabc0	
+ *		out	:	abc000
+ *
+ *		in	:	abcNx0	
+ *		out	:	x00000
+ *
+ *		in	:	abcde0	
+ *		out	:	000000
+ */
 
 char
 	*get_next_line(int fd)
 {
 	static char	buff[BUFFER_SIZE + 1];
 	char		*line;
-	ssize_t		n;
 
 	if (BUFFER_SIZE <= 0 || (read(fd, 0, 0) != 0))
 		return (0);
@@ -52,17 +54,18 @@ char
 	{
 		if (buff[0] == 0)
 		{
-			n = read(fd, buff, BUFFER_SIZE);
-			if (!n && !line)
-				return (gnl_decal(buff, BUFFER_SIZE - 1));
-			if (!n)
-				return (line);
+			if (!(read(fd, buff, BUFFER_SIZE)))
+			{
+				if (!line)
+					return (0);
+				else
+					return (line);
+			}
 		}
 		line = gnl_strjoin(line, buff);
 		if (!line)
 			return (0);
-		gnl_decal(buff, gnl_skip(buff, '\n'));
 		if (line[gnl_skip(line, '\n')] == '\n')
-			return (gnl_strsub(line, gnl_skip(line, '\n')));
+			return (gnl_strsub(line));
 	}	
 }

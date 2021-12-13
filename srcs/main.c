@@ -80,7 +80,7 @@ void
 int
 	main(void)
 {
-	test(34, "./Files/file1");
+	test(34, "./Files/file5");
 	test(34, "./Files/file2");
 	test(34, "./Files/file3");
 	test(34, "./Files/file2");

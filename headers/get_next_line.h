@@ -29,12 +29,12 @@ void	examine_buffer(char *s, char *d);
 
 	//	get-next-line
 
-char	*gnl_decal(char *s, ssize_t n);
 char	*get_next_line(int fd);
+char	*gnl_decal(char *s);
 
 	//	get_next_line-utils
 
-char	*gnl_strsub(char *s, ssize_t n);
+char	*gnl_strsub(char *s);
 char	*gnl_strjoin(char *s1, char *s2);
 ssize_t	gnl_skip(char *s, char c);
 

@@ -24,13 +24,18 @@ ssize_t
 		n++;
 	return (n);
 }
+/*	It's like a strlen
+ *	but you can choose a char
+ *	very good for know where is \n
+ */
 
 char
-	*gnl_strsub(char *s, ssize_t n)
+	*gnl_strsub(char *s)
 {
 	char	*r;
+	ssize_t	n;
 
-	n++;
+	n = gnl_skip(s, '\n') + 1;
 	r = (char *)malloc(n + 1);
 	if (!r)
 		return (0);
@@ -40,6 +45,8 @@ char
 	free(s);
 	return (r);
 }
+/* He delete whats is after the line
+ */
 
 char
 	*gnl_strjoin(char *s1, char *s2)
@@ -68,5 +75,10 @@ char
 	while (s2[i])
 		r[len++] = s2[i++];
 	free(s1);
+	gnl_decal(s2);
 	return (r);
-}
+}	
+/*	The function join s1 and s2 and then
+ *	He will free s1 (line)
+ *	and decal the s2 (buff)
+ */
