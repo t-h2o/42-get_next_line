@@ -18,8 +18,7 @@ DIR_INC	=	./headers/
 #	Sources
 
 SRCS	=	${DIR_SRC}/main.c			\
-			${DIR_SRC}/get_next_line.c	\
-			${DIR_SRC}/get_next_line_utils.c
+			${DIR_SRC}/get_next_line.c
 
 
 OBJS	=	${addprefix ${DIR_OBJ}/, ${notdir ${SRCS:.c=.o}}}
